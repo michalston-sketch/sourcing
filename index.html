@@ -78,6 +78,11 @@ input[type="text"]:focus { outline: none; border-color: var(--green); }
     </div>
     <h1>Help us find Finout's next<br><em>Senior Data Engineer</em> 🚀</h1>
     <p>Takes ~3 minutes — open LinkedIn, browse results, paste the best profiles</p>
+    <div style="background:linear-gradient(135deg,#AEECD3,#BDDDFF);border-radius:16px;padding:16px 20px;margin-top:20px;text-align:center;">
+      <div style="font-size:22px;margin-bottom:6px;">👟 💵</div>
+      <div style="font-size:15px;font-weight:800;color:#0e6d56;margin-bottom:4px;">Referral Bonus — $2,000 + Sneakers!</div>
+      <div style="font-size:13px;color:#1B1F1D;line-height:1.6;">Know someone great? If they get hired, you get <strong>$2,000</strong> and a pair of <strong>custom Finout sneakers</strong> 🎉</div>
+    </div>
   </div>
 
   <div id="main-form">
@@ -136,7 +141,7 @@ input[type="text"]:focus { outline: none; border-color: var(--green); }
           <div class="link-row"><div class="lnum">3</div><input type="text" placeholder="https://www.linkedin.com/in/..." /></div>
         </div>
         <button class="add-btn" onclick="addLink()">+ Add another profile</button>
-        <button class="sub-btn" id="sub-btn" onclick="sendData()">&#x27A4; Send to Michal</button>
+        <button class="sub-btn" id="sub-btn" onclick="sendData()">&#x27A4; Send to Talent Acquisition Team</button>
       </div>
     </div>
   </div>
@@ -146,13 +151,16 @@ input[type="text"]:focus { outline: none; border-color: var(--green); }
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#13886C" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
     <h3>Thank you! 🙌</h3>
-    <p>Your profiles have been sent to Michal.<br>You're helping Finout find its next great hire!</p>
+    <p>Your profiles have been sent to the Talent Acquisition Team.<br>You're helping Finout find its next great hire!</p>
+    <div style="margin-top:20px;background:#AEECD3;border-radius:12px;padding:14px 18px;">
+      <div style="font-size:13px;font-weight:700;color:#0e6d56;">👟 Don't forget — if your referral gets hired, you get $2,000 + custom Finout sneakers!</div>
+    </div>
   </div>
 
-  <p class="footer">Links are saved in Finout's internal Google Sheet only &nbsp;·&nbsp; Questions? michal@finout.io</p>
+  <p class="footer">Links are saved in Finout's internal Google Sheet only &nbsp;·&nbsp; Questions? <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4924202a212825092f2027263c3d672026">[email&#160;protected]</a></p>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 var SCRIPT_URL = "https://script.google.com/a/macros/finout.io/s/AKfycbxWNVK__mIvk9NDhis48PeuCQG5NVQbgN6J6f_k_4ToeImFjkIEoXn0YmBL87ZYiHxzXQ/exec";
 
 function addLink() {
@@ -203,14 +211,4 @@ function sendData() {
 
   setTimeout(function() {
     document.getElementById('main-form').style.display = 'none';
-    document.getElementById('success-card').style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, 1500);
-}
-
-document.getElementById('sender-name').addEventListener('input', function() {
-  this.style.borderColor = '';
-});
-</script>
-</body>
-</html>
+    document.getElementById('success-card').styl

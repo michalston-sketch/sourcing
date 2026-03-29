@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finout — Help Us Find Our Next Data Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green:      #38B28E;
+    --green-dark: #13886C;
+    --dark:       #1B1F1D;
+    --white:      #ffffff;
+    --mint:       #AEECD3;
+    --peach:      #FCCBAC;
+    --lavender:   #C4C8FF;
+    --sky:        #BDDDFF;
+    --yellow:     #FFEC89;
+    --pink:       #FAD0E4;
+    --gray-bg:    #F6F8F6;
+    --gray-text:  #6B7280;
+    --border:     #E3E8E5;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--gray-bg);
+    color: var(--dark);
+    min-height: 100vh;
+    padding: 40px 16px 80px;
+  }
+
+  .container { max-width: 620px; margin: 0 auto; }
+
+  /* HEADER */
+  .header { text-align: center; margin-bottom: 36px; }
+
+  .logo-wrap {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .logo-name {
+    font-size: 28px; font-weight: 800;
+    color: var(--dark); letter-spacing: -1.5px;
+  }
+
+  .header h1 {
+    font-size: 30px; font-weight: 800;
+    line-height: 1.25; color: var(--dark);
+    margin-bottom: 10px; letter-spacing: -0.5px;
+  }
+
+  .header h1 em {
+    font-style: normal; color: var(--green-dark);
+    border-bottom: 4px solid var(--mint);
+    padding-bottom: 1px;
+  }
+
+  .header p { font-size: 14px; color: var(--gray-text); line-height: 1.6; }
+
+  /* CARD */
+  .card {
+    background: var(--white);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  .card-head {
+    padding: 15px 22px;
+    display: flex; align-items: center; gap: 12px;
+  }
+
+  .ch-1 { background: var(--green-dark); }
+  .ch-2 { background: #1a9a7a; }
+  .ch-3 { background: #117a60; }
+
+  .step-num {
+    width: 26px; height: 26px;
+    background: rgba(255,255,255,0.22);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: white; flex-shrink: 0;
+  }
+
+  .card-head h2 { font-size: 15px; font-weight: 700; color: white; }
+
+  .card-body { padding: 20px 22px; }
+
+  /* SEARCH BUTTONS */
+  .search-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .search-btn {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px; border-radius: 12px;
+    border: 1.5px solid transparent;
+    text-decoration: none; gap: 10px;
+    transition: all 0.18s; cursor: pointer;
+  }
+
+  .sb-1 { background: #E6F9F2; border-color: var(--mint); }
+  .sb-2 { background: #EDF5FF; border-color: var(--sky); }
+  .sb-3 { background: #FFF3EC; border-color: var(--peach); }
+
+  .search-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  }
+
+  .sq {
+    font-family: 'Courier New', monospace;
+    font-size: 12px; font-weight: 600;
+    color: var(--dark); flex: 1;
+  }
+
+  .go-tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 11px; font-weight: 600;
+    color: var(--green-dark);
+    background: var(--mint);
+    padding: 4px 10px; border-radius: 20px;
+    white-space: nowrap; flex-shrink: 0;
+  }
+
+  /* TIPS */
+  .tips {
+    background: #FFFCEE;
+    border: 1px solid #FFE566;
+    border-radius: 10px;
+    padding: 13px 15px;
+    margin-top: 14px;
+  }
+
+  .tips p { font-size: 12.5px; color: #7A6000; line-height: 1.85; }
+  .tips strong { font-weight: 700; }
+
+  /* FORM */
+  .form-group { margin-bottom: 14px; }
+
+  label {
+    display: block; font-size: 11px; font-weight: 600;
+    color: var(--dark); margin-bottom: 6px;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+
+  input[type="text"] {
+    width: 100%; padding: 11px 14px;
+    border: 1.5px solid var(--border); border-radius: 10px;
+    font-size: 14px; font-family: 'Poppins', sans-serif;
+    color: var(--dark); background: white;
+    transition: border-color 0.18s;
+  }
+
+  input[type="text"]:focus { outline: none; border-color: var(--green); }
+
+  /* LINK ROWS */
+  #links-container { display: flex; flex-direction: column; gap: 7px; margin-bottom: 10px; }
+
+  .link-row { display: flex; gap: 8px; align-items: center; animation: fu 0.2s ease; }
+
+  @keyframes fu {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .lnum {
+    width: 22px; height: 22px; background: var(--mint);
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-size: 10px; font-weight: 700;
+    color: var(--green-dark); flex-shrink: 0;
+  }
+
+  .link-row input {
+    flex: 1; padding: 9px 12px;
+    border: 1.5px solid var(--border); border-radius: 8px;
+    font-size: 12px; font-family: 'Poppins', sans-serif;
+    color: var(--dark); transition: border-color 0.18s;
+  }
+
+  .link-row input:focus { outline: none; border-color: var(--green); }
+
+  .rm-btn {
+    width: 26px; height: 26px; background: #FEE2E2;
+    border: none; border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: background 0.15s;
+  }
+
+  .rm-btn:hover { background: #FECACA; }
+
+  .add-btn {
+    width: 100%; display: flex; align-items: center;
+    justify-content: center; gap: 6px; padding: 9px;
+    background: none; border: 1.5px dashed var(--mint);
+    border-radius: 8px; font-size: 12px; font-weight: 600;
+    color: var(--green-dark); font-family: 'Poppins', sans-serif;
+    cursor: pointer; transition: all 0.18s; margin-bottom: 4px;
+  }
+
+  .add-btn:hover { background: #E6F9F2; border-color: var(--green); }
+
+  /* SUBMIT */
+  .sub-btn {
+    width: 100%; padding: 15px;
+    background: var(--green-dark); color: white;
+    border: none; border-radius: 12px;
+    font-size: 15px; font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer; transition: all 0.2s;
+    display: flex; align-items: center;
+    justify-content: center; gap: 8px; margin-top: 10px;
+  }
+
+  .sub-btn:hover:not(:disabled) {
+    background: #0e6d56;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(19,136,108,0.3);
+  }
+
+  .sub-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  /* SUCCESS */
+  .success-card {
+    display: none; background: white;
+    border-radius: 20px; border: 1px solid var(--mint);
+    padding: 52px 24px; text-align: center;
+  }
+
+  .sicon {
+    width: 68px; height: 68px; background: var(--mint);
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; margin: 0 auto 18px;
+  }
+
+  .success-card h3 {
+    font-size: 24px; font-weight: 800; color: var(--dark);
+    margin-bottom: 8px; letter-spacing: -0.5px;
+  }
+
+  .success-card p { font-size: 14px; color: var(--gray-text); line-height: 1.7; }
+
+  /* ERROR */
+  .err {
+    display: none; background: #FEE2E2;
+    border: 1px solid #FECACA; border-radius: 8px;
+    padding: 10px 14px; font-size: 12px; color: #991B1B;
+    margin-top: 8px; text-align: center;
+  }
+
+  .footer { text-align: center; font-size: 11px; color: #9CA3AF; margin-top: 24px; line-height: 1.7; }
+
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="logo-wrap">
+      <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwMCIgaGVpZ2h0PSIyNTYiIHZpZXdCb3g9IjAgMCAxMDAwIDI1NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI0Ny43ODcgNjcuMDMwMUMyNDcuNzE0IDY2Ljc4MDQgMjQ3LjYyNyA2Ni41MzUzIDI0Ny41MjYgNjYuMjk2QzI0Ny4zNjMgNjUuODYyMyAyNDcuMTY3IDY1LjQyODUgMjQ2Ljk3MiA2NS4wMjgyQzI0Ni44MTQgNjQuNzcyMiAyNDYuNjM5IDY0LjUyNyAyNDYuNDUgNjQuMjk0MkMyNDYuMjA0IDYzLjkzOTEgMjQ1LjkzMiA2My42MDQ0IDI0NS42MzUgNjMuMjkzMkwyNDQuOTE3IDYyLjY5MjZMMjQ0LjIzMiA2Mi4xNTg4TDI0My44NzQgNjEuOTkyQzI0My43OTIgNjEuOTAzMyAyNDMuNjkyIDYxLjgzNDggMjQzLjU4IDYxLjc5MThMMTQ4LjM1MyAxMy4wNzkzQzE0MC43NzMgOS4yNDM3NiAxMzIuNDMxIDcuMjQ4NDEgMTIzLjk3NSA3LjI0ODQxQzExNS41MTkgNy4yNDg0MSAxMDcuMTc3IDkuMjQzNzYgOTkuNTk3OSAxMy4wNzkzTDQuNDY4NDkgNjEuNzU4NEw0LjE3NDk4IDYxLjk1ODZMMy44MTYyNSA2Mi4xMjU0TDMuMTk2NjIgNjIuNjkyNkMyLjk2ODM0IDYyLjg5MjggMi42NzQ4MyA2My4wOTMgMi40NzkxNiA2My4yOTMyQzIuMTgyMSA2My42MDQ0IDEuOTA5NDggNjMuOTM5MSAxLjY2Mzg2IDY0LjI5NDJDMS40NjQzNCA2NC41MTg3IDEuMjg5MzggNjQuNzY0OCAxLjE0MjA2IDY1LjAyODJDMC45MTA5NzcgNjUuNDI4IDAuNzI0OTg1IDY1Ljg1MzMgMC41ODc2NTggNjYuMjk2QzAuNTg3NjU4IDY2LjU2MyAwLjM1OTM3NCA2Ni43NjMxIDAuMjk0MTUgNjcuMDMwMUMwLjEwMDM3NyA2Ny43ODE0IDAuMDAxNzM0MDggNjguNTU1MSAwLjAwMDY0MTQ3NyA2OS4zMzIyVjE1MS4xNzZDLTAuMDUzNjA2NyAxNjMuNzMzIDMuMzMzODggMTc2LjA1MyA5Ljc3ODYxIDE4Ni43NEMxNi4yMjMzIDE5Ny40MjYgMjUuNDY3MiAyMDYuMDUgMzYuNDYwOSAyMTEuNjMzTDEyMC4zMzkgMjU0LjU0QzEyMC42NTYgMjU0LjY4NyAxMjAuOTgzIDI1NC44MSAxMjEuMzE3IDI1NC45MDdMMTIxLjkzNyAyNTUuMTRDMTIyLjYxMSAyNTUuMzA4IDEyMy4yOTkgMjU1LjQwOCAxMjMuOTkyIDI1NS40NDFDMTI0LjY4NCAyNTUuNDA2IDEyNS4zNzIgMjU1LjMwNiAxMjYuMDQ2IDI1NS4xNEwxMjYuNjY2IDI1NC45MDdDMTI3LjAwMiAyNTQuODE0IDEyNy4zMjkgMjU0LjY5MSAxMjcuNjQ0IDI1NC41NEwyMTEuNTIyIDIxMS42MzNDMjIyLjUyIDIwNi4wNTIgMjMxLjc2OCAxOTcuNDI5IDIzOC4yMTkgMTg2Ljc0M0MyNDQuNjY5IDE3Ni4wNTcgMjQ4LjA2MyAxNjMuNzM1IDI0OC4wMTUgMTUxLjE3NlY2OS4yMzIxQzI0OC4wMzUgNjguNDkxIDI0Ny45NTggNjcuNzUwNCAyNDcuNzg3IDY3LjAzMDFWNjcuMDMwMVpNMTA2LjkwMyAyOC4wMjY3QzExMi4yMTMgMjUuMzI4MyAxMTguMDYyIDIzLjkyNDIgMTIzLjk5MiAyMy45MjQyQzEyOS45MjEgMjMuOTI0MiAxMzUuNzcgMjUuMzI4MyAxNDEuMDggMjguMDI2N0wyMjEuNjk3IDY5LjIzMjFMMTUyLjMzMiAxMDQuNjY1TDE0MS4wMTUgMTEwLjQzOEMxMzUuNzEgMTEzLjEzNiAxMjkuODY3IDExNC41NCAxMjMuOTQzIDExNC41NEMxMTguMDE5IDExNC41NCAxMTIuMTc1IDExMy4xMzYgMTA2Ljg3IDExMC40MzhMOTUuNTU0IDEwNC42NjVMNDEuNjc4OCA3Ny4wNzI4TDQ3LjI1NTUgNzcuNjA2N0M1My43Njg4IDc4LjEwNzEgNjAuMzA5NSA3OC4xMDcxIDY2LjgyMjcgNzcuNjA2N0M3My4zNDUyIDc3LjAzOTUgNzkuODY3NiA3Ni40MDU1IDg2LjM5IDc2LjAwNTJDOTkuNDM0OCA3NS4zMzc5IDExMi40OCA3NC41MTQ5IDEyNS41MjQgNzMuNTM2MkMxMzguNTY5IDcyLjQwMTggMTUxLjYxNCA3MS41MDA5IDE2NC42NTkgNzAuMTk5N0MxNjQuODQ1IDcwLjE3MTIgMTY1LjAxNiA3MC4wODAzIDE2NS4xNDYgNjkuOTQxNUMxNjUuMjc2IDY5LjgwMjYgMTY1LjM1NyA2OS42MjM1IDE2NS4zNzYgNjkuNDMyM0MxNjUuMzk1IDY5LjIxNjIgMTY1LjMzIDY5LjAwMTIgMTY1LjE5NiA2OC44MzNDMTY1LjA2MiA2OC42NjQ5IDE2NC44NyA2OC41NTY3IDE2NC42NTkgNjguNTMxNVY2OC41MzE1QzE1MS42MTQgNjcuMTk2OSAxMzguNTY5IDY2LjE5NTkgMTI1LjUyNCA2NS4xOTVDMTEyLjQ4IDY0LjE5NDEgOTkuNDM0OCA2My4yNTk4IDg2LjM5IDYyLjU5MjVDNzkuODY3NiA2Mi4yMjU1IDczLjM0NTIgNjEuNTU4MiA2Ni44MjI3IDYwLjk5MUM2MC4zMDk1IDYwLjQ5MDYgNTMuNzY4OCA2MC40OTA2IDQ3LjI1NTUgNjAuOTkxQzQ1LjM5NjYgNjAuOTkxIDQzLjUwNTEgNjEuMzU4MSA0MS42Nzg4IDYxLjUyNDlMMTA2LjkwMyAyOC4wMjY3Wk0xNi4yNDE0IDE1MS4xNzZWODIuNzc4Mkw4OC4zMTQxIDExOS43NDZDOTYuNTYyMiAxMjMuOTQ3IDEwMy41IDEzMC40MiAxMDguMzQ2IDEzOC40MzdDMTEzLjE5MSAxNDYuNDU0IDExNS43NTMgMTU1LjY5NiAxMTUuNzQxIDE2NS4xMjJWMjIxLjY3NkMxMTQuMjA4IDIxOC4zMzkgMTEyLjQ4IDIxNS4xNjkgMTEwLjg4MiAyMTEuOTY2QzEwOC4wMDQgMjA2LjYzMiAxMDQuNzExIDIwMS41NDQgMTAxLjAzMyAxOTYuNzUyQzk3LjI0OTggMTkyLjAxNCA5My40MzQyIDE4Ny4zMSA4OS43NDkgMTgyLjQzOUM4Mi42Mzk2IDE3Mi42OTYgNzUuMzc4IDE2My4wMzEgNjcuOTY0MiAxNTMuNDQ1QzYwLjM5ODIgMTQzLjkwMiA1My4wOTMxIDEzNC4yNiA0NS4zNjQgMTI0Ljg1MUM0NS4yNDQ1IDEyNC43MDMgNDUuMDgwNCAxMjQuNiA0NC44OTc1IDEyNC41NThDNDQuNzE0NSAxMjQuNTE2IDQ0LjUyMzEgMTI0LjUzNyA0NC4zNTMgMTI0LjYxOEM0NC4xNjAxIDEyNC43MyA0NC4wMTc5IDEyNC45MTUgNDMuOTU2OSAxMjUuMTMzQzQzLjg5NTkgMTI1LjM1MiA0My45MjExIDEyNS41ODYgNDQuMDI2OSAxMjUuNzg1QzQ5LjUzODQgMTM2LjY2MiA1NS40MDg1IDE0Ny4zMDYgNjEuMTE1NiAxNTguMTQ5QzY2LjgyMjcgMTY4Ljk5MyA3Mi44NTYgMTc5LjQzNiA3OC45MjE4IDE4OS45NzlDODEuOTU0NyAxOTUuMjUxIDg0LjY5NDEgMjAwLjY4OSA4Ny41MzE0IDIwNi4xNjFDOTAuMzY1NiAyMTEuNTI4IDkzLjYzODUgMjE2LjY0IDk3LjMxNSAyMjEuNDQyQzk4LjU1NDMgMjIzLjA3NyA5OS44OTE0IDIyNC43NzggMTAxLjIyOCAyMjYuMjQ2TDQzLjc2NiAxOTYuNzUyQzM1LjQ2MDEgMTkyLjU2MyAyOC40NzQgMTg2LjA2NyAyMy42MDY2IDE3OC4wMDhDMTguNzM5MSAxNjkuOTQ4IDE2LjE4NjggMTYwLjY1IDE2LjI0MTQgMTUxLjE3NlpNMjA0LjIxNyAxOTYuNzUyTDEzMi4xNzcgMjMzLjc1NFYxNjUuMTIyQzEzMi4xNDggMTU1LjY2MyAxMzQuNzE1IDE0Ni4zODUgMTM5LjU4NyAxMzguMzQ1QzE0NC40NTkgMTMwLjMwNSAxNTEuNDQgMTIzLjgyNiAxNTkuNzM0IDExOS42NDZMMTk0Ljc2IDEwMS42NjNMMjE3LjM2IDkwLjA4NTFDMjE1LjgyNyA5MS45MjAxIDIxNC4zMjcgOTMuNzU1MiAyMTIuODYgOTUuNjU3QzIwOS4wNzQgMTAwLjU2MyAyMDUuNjgyIDEwNS43NzMgMjAyLjcxNyAxMTEuMjM4QzE5OS44MTUgMTE2Ljc0MyAxOTYuOTc3IDEyMi4yODIgMTkzLjg3OSAxMjcuNjg3QzE4Ny43MDUgMTM4LjQ1MyAxODEuNjI4IDE0OS4yODUgMTc1LjY0OSAxNjAuMTg0QzE2OS44NDQgMTcxLjE5NSAxNjMuODExIDE4Mi4wNzIgMTU4LjA3MSAxOTMuMTQ5QzE1Ny45NTYgMTkzLjMzNiAxNTcuOTE2IDE5My41NjIgMTU3Ljk1OSAxOTMuNzc5QzE1OC4wMDEgMTkzLjk5NiAxNTguMTIzIDE5NC4xODggMTU4LjMgMTk0LjMxNkMxNTguMzg5IDE5NC4zNzkgMTU4LjQ5IDE5NC40MjIgMTU4LjU5NiAxOTQuNDQ0QzE1OC43MDIgMTk0LjQ2NiAxNTguODEyIDE5NC40NjcgMTU4LjkxOCAxOTQuNDQ1QzE1OS4wMjQgMTk0LjQyMyAxNTkuMTI1IDE5NC4zOCAxNTkuMjE1IDE5NC4zMThDMTU5LjMwNSAxOTQuMjU2IDE1OS4zODIgMTk0LjE3NiAxNTkuNDQxIDE5NC4wODNDMTY3LjI2OCAxODQuNDc0IDE3NC43NjkgMTc0LjU5OCAxODIuMjY5IDE2NC44NTVDMTg5Ljc3IDE1NS4xMTMgMTk3LjI3MSAxNDUuMTM3IDIwNC42MDkgMTM1LjE2MUMyMDguMjYxIDEzMC4xNTYgMjEyLjE3NSAxMjUuMzUyIDIxNS44OTIgMTIwLjQ4QzIxOS43MTcgMTE1LjYxMyAyMjMuMTMxIDExMC40MjMgMjI2LjEgMTA0Ljk2NkMyMjcuOTkxIDEwMS42MjkgMjI5LjcyIDk4LjA1OTIgMjMxLjQxNiA5NC4zODkxVjE1MS4xMDlDMjMxLjUwNSAxNjAuNTU3IDIyOS4wMDQgMTY5Ljg0MiAyMjQuMTk3IDE3Ny45MUMyMTkuMzg5IDE4NS45NzggMjEyLjQ2OCAxOTIuNTA1IDIwNC4yMTcgMTk2Ljc1MlYxOTYuNzUyWiIgZmlsbD0iIzM4QjI4RSIvPgo8cGF0aCBkPSJNMzEyLjM3MyAyMDQuMDNIMzUxLjExMVYxMDIuMDQySDM4Mi43MjhWNjYuMDg0NUgzNTEuMTExVjU3LjVDMzUxLjExMSA0NC41NDIzIDM1OC4yODcgMzcuMzYxNSAzNjkuNzc5IDM3LjM2MTVDMzczLjU2OCAzNy4zNDYxIDM3Ny4zNDIgMzcuODM2NCAzODEuMDAxIDM4LjgxOTNDMzgyLjUwMiAzOS4zNzI3IDM4NC4wMzMgMzkuODQxNCAzODUuNTg3IDQwLjIyM1Y0LjMxOTI4QzM4My4yNjcgMy43NzkzOCAzODAuNzMxIDMuMTg1NTEgMzc4LjE0MiAyLjMyMTY2QzM3Mi4xMjEgMC44MjgwOTQgMzY1Ljk0NiAwLjA0ODg2NiAzNTkuNzQ0IDYuMTAzNTJlLTA1QzMzMS4wNDEgNi4xMDM1MmUtMDUgMzEyLjM3MyAxOC40MTA4IDMxMi4zNzMgNTEuNzIzVjY2LjA4NDVIMjkwLjc5MlYxMDIuMDQySDMxMi4zNzNWMjA0LjAzWiIgZmlsbD0iIzFCMUYxRCIvPgo8cGF0aCBkPSJNMzk3LjA4NCAyMDQuMDMxSDQzNS44NzZWNjYuMDg1MUgzOTcuMDg0VjIwNC4wMzFaTTM5NC4yMjQgMjMuMDAwNkMzOTQuMzM4IDI4Ljc4NjQgMzk2LjcyMiAzNC4yOTUyIDQwMC44NjEgMzguMzM2M0M0MDUgNDIuMzc3NSA0MTAuNTYyIDQ0LjYyNjMgNDE2LjM0NSA0NC41OTY4QzQyMi4xNTggNDQuNjQxNyA0MjcuNzU3IDQyLjQwNiA0MzEuOTQyIDM4LjM2OTFDNDM2LjEyOCAzNC4zMzIyIDQzOC41NjYgMjguODE1MiA0MzguNzM1IDIzLjAwMDZDNDM4LjYyMiAxNy4yMTQ4IDQzNi4yMzggMTEuNzA2IDQzMi4wOTkgNy42NjQ5MUM0MjcuOTYgMy42MjM3OCA0MjIuMzk3IDEuMzc0ODkgNDE2LjYxNSAxLjQwNDM3QzQxMC44MDYgMS4zNzMzNCA0MDUuMjE1IDMuNjEzNTMgNDAxLjAzMiA3LjY0NzU3QzM5Ni44NSAxMS42ODE2IDM5NC40MDcgMTcuMTkwNSAzOTQuMjI0IDIzLjAwMDZWMjMuMDAwNloiIGZpbGw9IiMxQjFGMUQiLz4KPHBhdGggZD0iTTQ1MS41NzIgMjA0LjAzMkg0OTAuMzFWMTMyLjQ5NEM0OTAuMzEgMTA5Ljc2NCA1MDMuMjU4IDk3LjcyNDQgNTIwLjQ2OSA5Ny43MjQ0QzUzNi42NTUgOTcuNzI0NCA1NDYuMzEzIDExNS4yNzEgNTQ2LjMxMyAxMzIuNDk0VjIwNC4wMzJINTg0Ljg4OVYxMjQuNzJDNTg0Ljg4OSA4OC44MTYgNTYxLjkwNSA2NS44MTYgNTMzLjIwMiA2NS44MTZDNTE3LjIxMiA2Ni40NTg3IDUwMS45NDggNzIuNjY0MyA0OTAuMDQgODMuMzYyOVY4My4zNjI5VjY2LjA4NTlINDUxLjMwMkw0NTEuNTcyIDIwNC4wMzJaIiBmaWxsPSIjMUIxRjFEIi8+CjxwYXRoIGQ9Ik02NzEuMjE1IDE2OS45NjZDNjY0LjI2MSAxNzAuMjU2IDY1Ny4zNzkgMTY4LjQ2IDY1MS40NTIgMTY0LjgwN0M2NDUuNTI2IDE2MS4xNTUgNjQwLjgyNiAxNTUuODEzIDYzNy45NTYgMTQ5LjQ2N0M2MzUuMDg3IDE0My4xMjIgNjM0LjE3OCAxMzYuMDYzIDYzNS4zNDcgMTI5LjE5NkM2MzYuNTE2IDEyMi4zMyA2MzkuNzEgMTE1Ljk3MSA2NDQuNTE4IDExMC45MzRDNjQ5LjMyNiAxMDUuODk4IDY1NS41MjggMTAyLjQxNSA2NjIuMzI5IDEwMC45MzNDNjY5LjEzIDk5LjQ1MDMgNjc2LjIxOCAxMDAuMDM2IDY4Mi42ODQgMTAyLjYxNUM2ODkuMTQ5IDEwNS4xOTQgNjk0LjY5NyAxMDkuNjQ4IDY5OC42MTQgMTE1LjQwNkM3MDIuNTMxIDEyMS4xNjMgNzA0LjYzOCAxMjcuOTYxIDcwNC42NjYgMTM0LjkyNkM3MDQuODYyIDEzOS40NDggNzA0LjE0MyAxNDMuOTYzIDcwMi41NTEgMTQ4LjJDNzAwLjk2IDE1Mi40MzcgNjk4LjUyOSAxNTYuMzA4IDY5NS40MDQgMTU5LjU4MUM2OTIuMjggMTYyLjg1NCA2ODguNTI2IDE2NS40NjEgNjg0LjM2OSAxNjcuMjQ2QzY4MC4yMTMgMTY5LjAzIDY3NS43MzggMTY5Ljk1NSA2NzEuMjE1IDE2OS45NjZWMTY5Ljk2NlpNNjAxLjQ1NCAxMzQuOTI2QzYwMS4xNjUgMTQ4Ljc3OCA2MDUuMDA0IDE2Mi40MDMgNjEyLjQ4NCAxNzQuMDYzQzYxOS45NjMgMTg1LjcyNCA2MzAuNzQyIDE5NC44OTEgNjQzLjQ0OCAyMDAuMzk2QzY1Ni4xNTQgMjA1LjkwMiA2NzAuMjExIDIwNy40OTYgNjgzLjgyNSAyMDQuOTc2QzY5Ny40NCAyMDIuNDU1IDcwOS45OTcgMTk1LjkzNSA3MTkuODk0IDE4Ni4yNDVDNzI5Ljc5MSAxNzYuNTU2IDczNi41OCAxNjQuMTM2IDczOS4zOTYgMTUwLjU3Qzc0Mi4yMTIgMTM3LjAwNCA3NDAuOTI3IDEyMi45MDcgNzM1LjcwNSAxMTAuMDc0QzczMC40ODMgOTcuMjQyIDcyMS41NiA4Ni4yNTY3IDcxMC4wNzQgNzguNTE5QzY5OC41ODkgNzAuNzgxMiA2ODUuMDYxIDY2LjY0MTUgNjcxLjIxNSA2Ni42Mjc4QzY2Mi4xNTEgNjYuNTIwOSA2NTMuMTU1IDY4LjIwMzQgNjQ0Ljc0MSA3MS41NzkzQzYzNi4zMjggNzQuOTU1MSA2MjguNjYyIDc5Ljk1NzkgNjIyLjE4MyA4Ni4zMDE0QzYxNS43MDMgOTIuNjQ1IDYxMC41MzcgMTAwLjIwNSA2MDYuOTggMTA4LjU0OEM2MDMuNDI0IDExNi44OTIgNjAxLjU0NiAxMjUuODU1IDYwMS40NTQgMTM0LjkyNlYxMzQuOTI2WiIgZmlsbD0iIzFCMUYxRCIvPgo8cGF0aCBkPSJNOTI2LjU3IDE1Mi4zMUM5MjYuNTcgMTg1LjYyMiA5NDUuMjM4IDIwNC4wMzMgOTczLjk0MSAyMDQuMDMzQzk4MC4xMjkgMjA0LjA3MyA5ODYuMzAyIDIwMy40MDMgOTkyLjMzOSAyMDIuMDM1Qzk5NC45MjggMjAxLjE3MSA5OTcuNzM0IDIwMC41NzggOTk5Ljc4NCAxOTkuNzE0VjE2Ni42NzFDOTk4LjMxNCAxNjcuMzI3IDk5Ni43NzYgMTY3LjgxNiA5OTUuMTk4IDE2OC4xMjlDOTkxLjUzNiAxNjkuMDkzIDk4Ny43NjIgMTY5LjU2NSA5ODMuOTc2IDE2OS41MzNDOTcyLjUzOCAxNjkuNTMzIDk2NS4zMDggMTYyLjM1MiA5NjUuMzA4IDE0OS40NDhWMTAyLjA0NUgxMDAwVjY2LjA4N0g5NjUuMzA4VjIyLjg5NDVIOTMwLjg4NlY0OC43NTZDOTMwLjg4NiA2MC4yNTYgOTI1LjQ5MSA2NS45NzkgOTE1LjA3OCA2NS45NzlIOTAyLjE4NFYxMDEuOTM3SDkyNi41N1YxNTIuMzFaIiBmaWxsPSIjMUIxRjFEIi8+CjxwYXRoIGQ9Ik04ODcuOTQyIDY2LjA4NTVIODQ5LjI1OFYxMzcuNjIzQzg0OS4yNTggMTYwLjM1MyA4MzYuMzYzIDE3Mi40NDcgODE5LjA5OCAxNzIuNDQ3QzgwMi45MTMgMTcyLjQ0NyA3OTMuMjU1IDE1NC45IDc5My4yNTUgMTM3LjYyM1Y2Ni4wODU1SDc1NC41MTdWMTQ1LjM5OEM3NTQuNTE3IDE4MS4zNTUgNzc3LjUwMSAyMDQuMzAxIDgwNi4yMDQgMjA0LjMwMUM4MjIuMTkxIDIwMy42OTIgODM3LjQ2MSAxOTcuNTAzIDg0OS4zNjYgMTg2LjgwOFYxODYuODA4VjIwNC4wMzFIODg4LjE1OEw4ODcuOTQyIDY2LjA4NTVaIiBmaWxsPSIjMUIxRjFEIi8+Cjwvc3ZnPgo=" alt="Finout" style="height:52px;width:auto;" />
+    </div>
+
+    <h1>Help us find Finout's next<br><em>Senior Data Engineer</em> 🚀</h1>
+    <p>Takes ~3 minutes — open LinkedIn, browse results, paste the best profiles</p>
+  </div>
+
+  <div id="main-form">
+
+    <!-- Step 1 -->
+    <div class="card">
+      <div class="card-head ch-1">
+        <div class="step-num">1</div>
+        <h2>Open a LinkedIn search</h2>
+      </div>
+      <div class="card-body">
+        <div class="search-list">
+          <a class="search-btn sb-1" href="https://www.linkedin.com/search/results/people/?keywords=%22Senior%20Data%20Engineer%22%20Python%20Airflow%20Spark%20AWS%20Israel&origin=GLOBAL_SEARCH_HEADER" target="_blank">
+            <span class="sq">"Senior Data Engineer" Python Airflow Spark AWS Israel</span>
+            <span class="go-tag">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Search
+            </span>
+          </a>
+          <a class="search-btn sb-2" href="https://www.linkedin.com/search/results/people/?keywords=%22Senior%20Backend%20Engineer%22%20Python%20Airflow%20Spark%20AWS%20Israel&origin=GLOBAL_SEARCH_HEADER" target="_blank">
+            <span class="sq">"Senior Backend Engineer" Python Airflow Spark AWS Israel</span>
+            <span class="go-tag">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Search
+            </span>
+          </a>
+          <a class="search-btn sb-3" href="https://www.linkedin.com/search/results/people/?keywords=%22Data%20Engineer%22%20Python%20Airflow%20Spark%20AWS%20Israel&origin=GLOBAL_SEARCH_HEADER" target="_blank">
+            <span class="sq">"Data Engineer" Python Airflow Spark AWS Israel</span>
+            <span class="go-tag">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Search
+            </span>
+          </a>
+        </div>
+        <div class="tips">
+          <p>
+            <strong>💡 First — filter by connections</strong><br>
+            After the search opens, click <strong>"1st"</strong> in the filter bar at the top for the most relevant results.<br><br>
+            <strong>What to look for</strong><br>
+            ✦ 7+ years of experience<br>
+            ✦ Worked at a startup — Wix, AppsFlyer, monday.com, Coralogix…<br>
+            ✦ Title includes Data / Backend / Platform Engineer<br>
+            ✦ Mentions Python, Spark, Airflow, or AWS
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="card">
+      <div class="card-head ch-2">
+        <div class="step-num">2</div>
+        <h2>Your name</h2>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="sender-name">Your name</label>
+          <input type="text" id="sender-name" placeholder="e.g. Dana Cohen" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="card">
+      <div class="card-head ch-3">
+        <div class="step-num">3</div>
+        <h2>Paste up to 10 LinkedIn profile links</h2>
+      </div>
+      <div class="card-body">
+        <div id="links-container">
+          <div class="link-row"><div class="lnum">1</div><input type="text" placeholder="https://www.linkedin.com/in/..." /></div>
+          <div class="link-row"><div class="lnum">2</div><input type="text" placeholder="https://www.linkedin.com/in/..." /></div>
+          <div class="link-row"><div class="lnum">3</div><input type="text" placeholder="https://www.linkedin.com/in/..." /></div>
+        </div>
+
+        <button class="add-btn" onclick="addLink()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add another profile
+        </button>
+
+        <button class="sub-btn" id="sub-btn" onclick="submitLinks()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Send to Michal
+        </button>
+        <div class="err" id="err-msg">Something went wrong — please try again 😕</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Success -->
+  <div class="success-card" id="success-card">
+    <div class="sicon">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#13886C" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h3>Thank you! 🙌</h3>
+    <p>Your profiles have been sent to Michal.<br>You're helping Finout find its next great hire!</p>
+  </div>
+
+  <p class="footer">Links are saved in Finout's internal Google Sheet only &nbsp;·&nbsp; Questions? <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="aac7c3c9c2cbc6eaccc3c4c5dfde84c3c5">[email&#160;protected]</a></p>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const SCRIPT_URL = "https://script.google.com/a/macros/finout.io/s/AKfycbxWNVK__mIvk9NDhis48PeuCQG5NVQbgN6J6f_k_4ToeImFjkIEoXn0YmBL87ZYiHxzXQ/exec";
+
+function addLink() {
+  const c = document.getElementById('links-container');
+  if (c.children.length >= 10) return;
+  const n = c.children.length + 1;
+  const row = document.createElement('div');
+  row.className = 'link-row';
+  row.innerHTML = `<div class="lnum">${n}</div>
+    <input type="text" placeholder="https://www.linkedin.com/in/..." />
+    <button class="rm-btn" onclick="removeLink(this)">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>`;
+  c.appendChild(row);
+}
+
+function removeLink(btn) {
+  btn.closest('.link-row').remove();
+  document.querySelectorAll('.link-row').forEach((r, i) => {
+    r.querySelector('.lnum').textContent = i + 1;
+  });
+}
+
+async function submitLinks() {
+  const nameEl = document.getElementById('sender-name');
+  const name = nameEl.value.trim();
+  if (!name) { nameEl.style.borderColor = '#EF4444'; nameEl.focus(); return; }
+
+  const links = [...document.querySelectorAll('#links-container input')]
+    .map(i => i.value.trim()).filter(Boolean);
+  if (!links.length) { alert('Please add at least one profile link.'); return; }
+
+  const btn = document.getElementById('sub-btn');
+  btn.disabled = true;
+  btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0"/></svg> Sending…`;
+  document.getElementById('err-msg').style.display = 'none';
+
+  try {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = SCRIPT_URL;
+    form.target = 'hidden_iframe';
+    const payload = document.createElement('input');
+    payload.type = 'hidden';
+    payload.name = 'data';
+    payload.value = JSON.stringify({ name, links: links.join('\n') });
+    form.appendChild(payload);
+    const iframe = document.createElement('iframe');
+    iframe.name = 'hidden_iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    document.body.appendChild(form);
+    iframe.onload = function() {
+      document.getElementById('main-form').style.display = 'none';
+      document.getElementById('success-card').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+    form.submit();
+  } catch {
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg

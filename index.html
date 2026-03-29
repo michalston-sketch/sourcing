@@ -163,7 +163,8 @@ input[type=text]:focus{outline:none;border-color:var(--green)}
     btn.textContent = 'Sending...';
 
     var url = URL + '?name=' + encodeURIComponent(name) + '&links=' + encodeURIComponent(links.join('\n'));
-    fetch(url, { method: 'GET', mode: 'no-cors' }).catch(function(){});
+    var img = new Image();
+    img.src = url;
 
     setTimeout(function() {
       document.getElementById('mf').style.display = 'none';

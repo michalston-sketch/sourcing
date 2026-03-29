@@ -405,30 +405,19 @@ async function submitLinks() {
 
   const btn = document.getElementById('sub-btn');
   btn.disabled = true;
-  btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0"/></svg> Sending…`;
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0"/></svg> Sending…';
   document.getElementById('err-msg').style.display = 'none';
 
-  try {
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = SCRIPT_URL;
-    form.target = 'hidden_iframe';
-    const payload = document.createElement('input');
-    payload.type = 'hidden';
-    payload.name = 'data';
-    payload.value = JSON.stringify({ name, links: links.join('\n') });
-    form.appendChild(payload);
-    const iframe = document.createElement('iframe');
-    iframe.name = 'hidden_iframe';
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-    document.body.appendChild(form);
-    iframe.onload = function() {
-      document.getElementById('main-form').style.display = 'none';
-      document.getElementById('success-card').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-    form.submit();
-  } catch {
-    btn.disabled = false;
-    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg
+  const url = SCRIPT_URL + '?name=' + encodeURIComponent(name) + '&links=' + encodeURIComponent(links.join('\n'));
+  fetch(url, { method: 'GET', mode: 'no-cors' }).catch(() => {});
+
+  setTimeout(function() {
+    document.getElementById('main-form').style.display = 'none';
+    document.getElementById('success-card').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 1500);
+}
+
+function _old_submitLinks_disabled() {
+
+g

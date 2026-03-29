@@ -161,9 +161,9 @@ input[type="text"]:focus { outline: none; border-color: var(--green); }
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-var SCRIPT_URL = "https://script.google.com/a/macros/finout.io/s/AKfycbxWNVK__mIvk9NDhis48PeuCQG5NVQbgN6J6f_k_4ToeImFjkIEoXn0YmBL87ZYiHxzXQ/exec";
+window.SCRIPT_URL = "https://script.google.com/a/macros/finout.io/s/AKfycbxWNVK__mIvk9NDhis48PeuCQG5NVQbgN6J6f_k_4ToeImFjkIEoXn0YmBL87ZYiHxzXQ/exec";
 
-function addLink() {
+window.addLink = function() {
   var c = document.getElementById('links-container');
   if (c.children.length >= 10) return;
   var n = c.children.length + 1;
@@ -173,7 +173,7 @@ function addLink() {
   c.appendChild(row);
 }
 
-function removeLink(btn) {
+window.removeLink = function(btn) {
   btn.closest('.link-row').remove();
   var rows = document.querySelectorAll('.link-row');
   for (var i = 0; i < rows.length; i++) {
@@ -181,7 +181,7 @@ function removeLink(btn) {
   }
 }
 
-function sendData() {
+window.sendData = function() {
   var nameEl = document.getElementById('sender-name');
   var name = nameEl.value.trim();
   if (!name) {
@@ -205,7 +205,7 @@ function sendData() {
   btn.disabled = true;
   btn.textContent = 'Sending...';
 
-  var url = SCRIPT_URL + '?name=' + encodeURIComponent(name) + '&links=' + encodeURIComponent(links.join('\n'));
+  var url = window.SCRIPT_URL + '?name=' + encodeURIComponent(name) + '&links=' + encodeURIComponent(links.join('\n'));
 
   fetch(url, { method: 'GET', mode: 'no-cors' }).catch(function() {});
 
